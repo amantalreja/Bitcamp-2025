@@ -1,0 +1,311 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main container covers 95% width and is flush left */
+#main-container {
+  width: 95%;
+  margin: 0; /* No auto centering */
+  margin-top:40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Card container on the left */
+#card-container {
+  flex: 0 0 45%;
+  height: 300px;
+  perspective: 1000px;
+  border-radius: 10px;
+}
+
+/* Transactions container on the right */
+#transactions-container {
+  flex: 0 0 50%;
+  min-height: 300px;
+}
+
+
+  #card {
+    width: 100%;
+    height: 100%;
+    color: white;
+    transition: 1s;
+    position: relative;
+    border-radius: 10px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    font-family: calibri;
+  }
+
+  /* Darker blue background with a subtle lighter gradient for the shine */
+  #front,
+  #back {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 10px;
+    backface-visibility: hidden;
+    background: linear-gradient(55deg, #0d1b2a 40%, #152238 45%);
+  }
+
+  #back {
+    transform: rotateY(180deg);
+  }
+
+  #front::after,
+  #front::before,
+  #back::after,
+  #back::before {
+    content: "";
+    width: 100%;
+    height: 500px; /* increased from 350px for larger card */
+    position: absolute;
+  }
+
+  #front::before,
+  #back::before {
+    left: -1%;
+    transform: rotate(90deg);
+    border-radius: 50% 95% 0% 100%;
+    background: rgb(255 255 255 / 3%);
+  }
+
+  #front::after,
+  #back::after {
+    height: 100%;
+    right: -50%;
+    top: -50%;
+    border-radius: 100% 0 100% 80%;
+    border: 1px solid rgb(239, 239, 239);
+  }
+
+  /* Updated type (Venture Studio) styling */
+  .type {
+    position: relative;
+    top: 10%;
+    margin-left: 15px;
+    font-weight: bold;
+    background: linear-gradient(62deg, #ffffff 0%, #000000 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.4em;
+  }
+
+  .title-text {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+  }
+
+  .details {
+    position: relative;
+    top: 35%;
+    margin-left: 15px;
+    font-size: 14px;
+  }
+
+  /* Improved styling for the cardholder name */
+  .name {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2em;
+    font-weight: 600;
+    width: 100%; /* Allow the name to occupy more width */
+  }
+
+  #hidden-number {
+    margin-bottom: 10px;
+    font-size: 16px; /* Increase font size of card number slightly */
+  }
+
+  #valid-date {
+    margin-left: 15px;
+  }
+
+  /* Updated Button styling for a premium blue look with adjustments */
+  #show-btn,
+  #hide-btn {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;  /* Increased padding for a larger button */
+    border-radius: 15px; /* Lowered border radius for a sleeker look */
+    font-family: 'Montserrat', sans-serif; /* Wider, modern font */
+    font-weight: 600;
+    font-size: 14px; /* Lower font size for button text */
+    background: linear-gradient(45deg, #1A3C7A, #2E5AA6); /* Premium blue gradient with reduced brightness */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease-in-out;
+  }
+
+  #show-btn:hover,
+  #hide-btn:hover {
+    background: linear-gradient(45deg, #2E5AA6, #1A3C7A);
+  }
+
+  .logo {
+    position: absolute;
+    font-size: 10px;
+    width: 20%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    bottom: 3%;
+    right: 0%;
+  }
+
+  .logo::before,
+  .logo::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+  }
+
+  .logo::before {
+    background: rgba(255, 0, 0, 0.525);
+    left: 10%;
+  }
+
+  .logo::after {
+    background: rgba(255, 213, 0, 0.584);
+    right: 10%;
+  }
+
+  .flipped {
+    transform: rotateY(-180deg);
+  }
+
+  #chip {
+    top: 10%;
+    position: absolute;
+    background: #e0ab89;
+    width: 15%;
+    height: 18%;
+    border-radius: 5px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #chip span {
+    position: absolute;
+    background: #e0ab89;
+    border: 1px solid black;
+  }
+
+  #chip span:nth-child(1) {
+    height: 100%;
+    width: 40%;
+    border-top: none;
+    border-bottom: none;
+  }
+
+  #chip span:nth-child(2) {
+    height: 60%;
+    width: 40%;
+    left: 0;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+  }
+
+  #chip span:nth-child(3) {
+    height: 60%;
+    width: 40%;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    right: 0;
+  }
+
+  #chip span:nth-child(4) {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+  }
+
+  #chip span:nth-child(5) {
+    aspect-ratio: 1/1;
+    width: 25%;
+    border-radius: 2px;
+  }
+
+  .reflection {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: 1s;
+  }
+
+  .reflection::before {
+    z-index: 0;
+    top: 50%;
+    content: "";
+    left: -50%;
+    height: 500px; /* increased from 360px */
+    position: absolute;
+    background: #ffffff;
+    transform: translate(-50%, -50%) rotate(50deg);
+    box-shadow: 0px 0px 10px 10px #ffffff;
+  }
+
+  .move {
+    transform: translateX(700px);
+  }
+
+
+/* TRANSACTIONSS!!!*/
+
+  .transaction {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .transaction:hover {
+    background: #f7f7f7;
+  }
+
+  .transaction span {
+    display: inline-block;
+  }
+
+  /* Date styling */
+  .transaction-date {
+    flex: 0 0 120px;
+    color: #757575;
+    font-size: 0.9em;
+  }
+
+  /* Description styling */
+  .transaction-description {
+    flex: 1;
+    color: #424242;
+    font-size: 1em;
+    padding: 0 15px;
+  }
+
+  /* Amount styling */
+  .transaction-amount {
+    flex: 0 0 100px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 1em;
+    color: #1976d2;
+  }

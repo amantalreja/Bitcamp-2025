@@ -1,0 +1,44 @@
+/** App.css **/
+
+.background {
+    fill: none;
+    pointer-events: all;
+  }
+
+  #states {
+    fill: none;
+    stroke: #fff;
+    stroke-linejoin: round;
+    stroke-width: 1.5px;
+  }
+
+  #states .active {
+    display: none;
+  }
+
+  .county-boundary {
+    stroke: #fff;
+    stroke-width: 0.5px;
+  }
+
+  .county-boundary:hover,
+  .state:hover {
+    fill: #002b5b;
+  }
+
+  .map-info-container {
+    background-color: #1e5f6c;
+    border-radius: 10px; /* Adjust the radius as desired */
+    padding: 10px;       /* Add spacing around the text */
+    margin-left: 30px;
+    margin-top:30px;
+  }
+
+  .map-info-container p {
+    margin: 5px 0;       /* Add spacing between text elements */
+  }
+
+  /* Assign different colors to text elements */
+  .map-info-container p:nth-child(1) { color: red; }
+  .map-info-container p:nth-child(2) { color: blue; }
+  .map-info-container p:nth-child(3) { color: green; }

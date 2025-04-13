@@ -11,11 +11,13 @@ const Header = () => {
       <h1>Dispute Daddy</h1>
       <nav>
         <button onClick={() => setIsPitchOpen(true)} className="nav-btn">
+        <Link to="/LLMPage">
           Solve Your Dispute
+          </Link>
         </button>
-        <Link to="/insights">
 
-        </Link>
+
+
       </nav>
     </header>
   );

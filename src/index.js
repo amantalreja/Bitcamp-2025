@@ -11,7 +11,7 @@ const Root = () => {
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/page1" element={<LLMPage />} />
+        <Route path="/LLMPage" element={<LLMPage />} />
       </Routes>
     </Router>
   );

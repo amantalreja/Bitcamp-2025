@@ -4,9 +4,43 @@
     padding-top: 30px;
   }
 
-  /* Top Transactions Section */
+  /* Transactions Section */
   .transactions-section {
     margin-bottom: 30px;
+  }
+
+  .transactions-card table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .transactions-card h2 {
+    margin-bottom: 20px;
+  }
+
+  .transactions-card th, .transactions-card td {
+    border: 1px solid #e0e0e0;
+    padding: 8px 12px;
+    text-align: left;
+  }
+
+  .transactions-card th {
+    background-color: #16314D;
+    color: white;
+  }
+
+  .dispute-btn {
+    background: #2E5AA6;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+
+  .dispute-btn:hover {
+    background: #1C3A5A;
   }
 
   /* Chat Layout */
@@ -84,7 +118,6 @@
     flex-direction: column;
   }
 
-  /* Chat Header */
   .chat-header {
     background-color: #1C3A5A;
     padding: 24px;
@@ -94,7 +127,6 @@
     border-bottom: 1px solid #1C3A5A;
   }
 
-  /* Chat Messages Area */
   .chat-messages {
     flex: 1;
     padding: 24px;
@@ -105,25 +137,70 @@
     background: #f9f9f9;
   }
 
-  /* User and Assistant Messages */
+  /* Message alignment */
+  .chat-message.user {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .chat-message.assistant {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  /* Message bubbles */
   .chat-message.user .bubble {
-    align-self: flex-end;
     background-color: #2E5AA6;
     color: white;
     padding: 14px 20px;
     border-radius: 18px 18px 4px 18px;
     font-size: 1rem;
     max-width: 70%;
+    text-align: left;
   }
 
   .chat-message.assistant .bubble {
-    align-self: flex-start;
     background-color: #1C3A5A;
     color: white;
     padding: 14px 20px;
     border-radius: 18px 18px 18px 4px;
     font-size: 1rem;
     max-width: 70%;
+    text-align: left;
+  }
+
+  /* Suggested Prompts */
+  .suggested-prompts {
+    margin: 16px;
+  }
+
+  .suggested-prompts h4 {
+    margin-bottom: 10px;
+    color: #1C3A5A;
+    font-size: 1.1rem;
+  }
+
+  .prompt-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .prompt-list button {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #1C3A5A;
+    background: white;
+    color: #1C3A5A;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+
+  .prompt-list button:hover {
+    background: #1C3A5A;
+    color: white;
+    transform: scale(1.05);
   }
 
   /* Chat Input Bar */
@@ -167,4 +244,43 @@
 
   .send-btn:hover {
     background-color: #1C3A5A;
+  }
+
+  /* Dispute Stats Card */
+  .dispute-stats-section {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .stats-card {
+    background: linear-gradient(135deg, #2E5AA6, #1C3A5A);
+    color: white;
+    padding: 20px 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    animation: fadeIn 1.5s ease;
+  }
+
+  .stats-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  .stats-text {
+    margin-top: 10px;
+    font-size: 1.1rem;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }

@@ -1,44 +1,65 @@
 /** App.css **/
 
 .background {
-    fill: none;
-    pointer-events: all;
-  }
+  fill: none;
+  pointer-events: all;
+}
 
-  #states {
-    fill: none;
-    stroke: #fff;
-    stroke-linejoin: round;
-    stroke-width: 1.5px;
-  }
+#states {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+  stroke-width: 1.5px;
+}
 
-  #states .active {
-    display: none;
-  }
+#states .active {
+  display: none;
+}
 
-  .county-boundary {
-    stroke: #fff;
-    stroke-width: 0.5px;
-  }
+.county-boundary {
+  stroke: #fff;
+  stroke-width: 0.5px;
+}
 
-  .county-boundary:hover,
-  .state:hover {
-    fill: #002b5b;
-  }
+.county-boundary:hover,
+.state:hover {
+  /* When hovered, change fill to a slightly lighter dark blue */
+  fill: #1C3A5A;
+}
 
-  .map-info-container {
-    background-color: #1e5f6c;
-    border-radius: 10px; /* Adjust the radius as desired */
-    padding: 10px;       /* Add spacing around the text */
-    margin-left: 30px;
-    margin-top:30px;
-  }
+/* Left Info Panel Styles */
+.map-info-container {
+  background-color: #16314D;  /* Dark blue background */
+  border-radius: 10px;
+  padding: 30px;              /* Increased padding for a larger block */
+  margin-top: 30px;
+  color: #ffffff;             /* White text */
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;            /* Base font size for the panel */
+}
 
-  .map-info-container p {
-    margin: 5px 0;       /* Add spacing between text elements */
-  }
+.map-info-container h1 {
+  font-size: 32px;            /* Increased heading font size */
+  margin-bottom: 15px;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
 
-  /* Assign different colors to text elements */
-  .map-info-container p:nth-child(1) { color: red; }
-  .map-info-container p:nth-child(2) { color: blue; }
-  .map-info-container p:nth-child(3) { color: green; }
+.map-info-container p {
+  margin: 10px 0;           /* Extra vertical spacing */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Color the numerical values (wrapped in <b>) differently per metric.
+   Assuming the following order:
+   1st p: Total Disputes,
+   2nd p: Total Transactions,
+   3rd p: Merchant Count,
+   4th p: Average Denied Percentage,
+   5th p: Aggregate Dispute Rate.
+*/
+.map-info-container p:nth-of-type(1) b { color: #FF6B6B; }   /* Red-ish for Total Disputes */
+.map-info-container p:nth-of-type(2) b { color: #FFA94D; }   /* Orange for Total Transactions */
+.map-info-container p:nth-of-type(3) b { color: #74C69D; }   /* Green for Merchant Count */
+.map-info-container p:nth-of-type(4) b { color: #A29BFE; }   /* Purple-ish for Average Denied Percentage */
+.map-info-container p:nth-of-type(5) b { color: #FECA57; }   /* Yellow-ish for Aggregate Dispute Rate */

@@ -1,59 +1,50 @@
 import React, { useEffect } from "react";
 import "./CreditCard.css";
 
-const CreditCard = () => {
+const CreditCard = ({ transactions = [] }) => {
   useEffect(() => {
-    // Function to update card details randomly on each flip
     function updateCardDetails() {
-      // Generate a masked card number for the front and a full version for the back.
       let maskedNumber = "1111 xxxx xxxx 1452";
       let fullNumber = "1111 ";
-      // Generate two random groups of four digits
       for (let i = 0; i < 2; i++) {
         let part = Math.floor(Math.random() * 9000 + 1000);
         fullNumber += part + " ";
       }
       fullNumber += "1452";
 
-      // Update both front (masked) and back (full) numbers
       const frontNumberEl = document.querySelector("#front #hidden-number");
       const backNumberEl = document.querySelector("#back #hidden-number");
       if (frontNumberEl) frontNumberEl.textContent = maskedNumber;
       if (backNumberEl) backNumberEl.textContent = fullNumber;
 
-      // Generate random CVV (3 digits)
       let cvv = Math.floor(Math.random() * 900 + 100);
       const cvvEl = document.getElementById("cvv");
       if (cvvEl) cvvEl.textContent = "CW: " + cvv;
 
-      // Generate random expiry date (MM/YY)
       let month = ("0" + (Math.floor(Math.random() * 12) + 1)).slice(-2);
-      let year = Math.floor(Math.random() * 10 + 23); // e.g., from 23 to 32
+      let year = Math.floor(Math.random() * 10 + 23);
       const validDateEl = document.getElementById("valid-date");
       if (validDateEl) validDateEl.textContent = "Expiry: " + month + "/" + year;
 
-      // Update cardholder name (for both front and back)
       const nameEls = document.querySelectorAll(".name");
       nameEls.forEach(el => {
-        el.textContent = "John Doe"; // Replace with a random name generator if desired.
+        el.textContent = "John Doe";
       });
 
-      // Update bank logo in .title-text (for both sides)
       const titleTextEls = document.querySelectorAll(".title-text");
       titleTextEls.forEach(el => {
-        el.innerHTML =
-          '<img src="https://companieslogo.com/img/orig/COF_BIG.D-bf4ccef2.svg?t=1720244491&download=true" alt="Capital One Logo" style="height:50px;">';
+        el.innerHTML = `
+          <img src="https://companieslogo.com/img/orig/COF_BIG.D-bf4ccef2.svg?t=1720244491&download=true"
+          alt="Capital One Logo" style="height:50px;">
+        `;
       });
 
-      // Update card type if needed
       const typeEls = document.querySelectorAll(".type");
       typeEls.forEach(el => {
-        // Use innerHTML to allow HTML tags (like <i>) to render
         el.innerHTML = "<i>Venture Studio</i>";
       });
     }
 
-    // Flip function toggles the flip animation and updates card details.
     function flip() {
       const cardEl = document.getElementById("card");
       if (cardEl) {
@@ -64,29 +55,50 @@ const CreditCard = () => {
       if (frontReflection) frontReflection.classList.toggle("move");
       if (backReflection) backReflection.classList.toggle("move");
 
-      // Update all card details upon flipping.
       updateCardDetails();
     }
 
-    // Attach event listeners to both buttons.
     const showBtn = document.getElementById("show-btn");
     const hideBtn = document.getElementById("hide-btn");
 
     if (showBtn) showBtn.addEventListener("click", flip);
     if (hideBtn) hideBtn.addEventListener("click", flip);
 
-    // Cleanup event listeners on unmount.
     return () => {
       if (showBtn) showBtn.removeEventListener("click", flip);
       if (hideBtn) hideBtn.removeEventListener("click", flip);
     };
   }, []);
 
+  // Helper: format date to "Apr 11, 2025"
+  function formatDate(dateObj) {
+    if (!(dateObj instanceof Date)) return "";
+    return dateObj.toLocaleDateString("en-US", {
+      month: "short",
+      day: "2-digit",
+      year: "numeric"
+    });
+  }
+
+  // Helper: format amount with color
+  function formatAmount(amount) {
+    if (isNaN(amount)) return "";
+    const formatted = `$${Math.abs(amount).toFixed(2)}`;
+    return amount < 0 ? (
+      <span style={{ color: "red" }}>-{formatted}</span>
+    ) : (
+      <span style={{ color: "green" }}>{formatted}</span>
+    );
+  }
+
+  // ONLY top 4
+  const recentTransactions = transactions.slice(0, 4);
+
   return (
     <div id="main-container">
       <div id="card-container">
-        {/* Card content */}
         <div id="card">
+          {/* Front of Card */}
           <div id="front">
             <div className="reflection"></div>
             <div className="type">
@@ -101,19 +113,17 @@ const CreditCard = () => {
             </div>
             <div className="details">
               <div className="name">John Doe</div>
-              <p id="hidden-number">1111 xxxxx xxxxx 1452</p>
+              <p id="hidden-number">1111 xxxx xxxx 1452</p>
             </div>
             <button id="show-btn">View Card Details</button>
             <div className="logo">MasterCard</div>
           </div>
+
+          {/* Back of Card */}
           <div id="back">
             <div className="reflection"></div>
             <div id="chip">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+              <span></span><span></span><span></span><span></span><span></span>
             </div>
             <div className="title-text">
               <img
@@ -133,23 +143,21 @@ const CreditCard = () => {
           </div>
         </div>
       </div>
+
+      {/* Transaction History Section */}
       <div id="transactions-container">
-        <h1>Transactions</h1>
-        <div className="transaction">
-          <span className="transaction-date">2023-12-01</span>
-          <span className="transaction-description">Payment Received</span>
-          <span className="transaction-amount">$120.00</span>
-        </div>
-        <div className="transaction">
-          <span className="transaction-date">2023-11-28</span>
-          <span className="transaction-description">Subscription Fee</span>
-          <span className="transaction-amount">-$9.99</span>
-        </div>
-        <div className="transaction">
-          <span className="transaction-date">2023-11-28</span>
-          <span className="transaction-description">Subscription Fee</span>
-          <span className="transaction-amount">-$9.99</span>
-        </div>
+        <h1>Recent Transactions</h1>
+        {recentTransactions.length === 0 ? (
+          <p>Loading transactions...</p>
+        ) : (
+          recentTransactions.map((tx, idx) => (
+            <div className="transaction" key={idx}>
+              <span className="transaction-date">{formatDate(tx.TransactionDate)}</span>
+              <span className="transaction-description">{tx.TransactionName}</span>
+              <span className="transaction-amount">{formatAmount(tx.TransactionAmount)}</span>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

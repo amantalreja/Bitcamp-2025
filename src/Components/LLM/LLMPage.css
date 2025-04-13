@@ -1,0 +1,170 @@
+.llm-page {
+    width: 95%;
+    margin: 0 auto;
+    padding-top: 30px;
+  }
+
+  /* Top Transactions Section */
+  .transactions-section {
+    margin-bottom: 30px;
+  }
+
+  /* Chat Layout */
+  .llm-layout {
+    display: flex;
+    min-height: 600px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  /* Sidebar */
+  .sidebar {
+    width: 280px;
+    background-color: #16314D;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-header {
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border-bottom: 1px solid #1C3A5A;
+  }
+
+  .new-chat-btn {
+    margin-top: 12px;
+    background: linear-gradient(45deg, #1C3A5A, #2E5AA6);
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .new-chat-btn:hover {
+    background: #2E5AA6;
+  }
+
+  .chat-history {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+
+  .chat-history-item {
+    padding: 14px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .chat-history-item:hover {
+    background: rgba(255,255,255,0.2);
+  }
+
+  /* Main Chat Content */
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+  }
+
+  .chatbox {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Chat Header */
+  .chat-header {
+    background-color: #1C3A5A;
+    padding: 24px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    border-bottom: 1px solid #1C3A5A;
+  }
+
+  /* Chat Messages Area */
+  .chat-messages {
+    flex: 1;
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #f9f9f9;
+  }
+
+  /* User and Assistant Messages */
+  .chat-message.user .bubble {
+    align-self: flex-end;
+    background-color: #2E5AA6;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 18px 18px 4px 18px;
+    font-size: 1rem;
+    max-width: 70%;
+  }
+
+  .chat-message.assistant .bubble {
+    align-self: flex-start;
+    background-color: #1C3A5A;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 18px 18px 18px 4px;
+    font-size: 1rem;
+    max-width: 70%;
+  }
+
+  /* Chat Input Bar */
+  .chat-input-bar {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0;
+    gap: 12px;
+  }
+
+  .chat-input-bar textarea {
+    flex: 1;
+    resize: none;
+    padding: 14px;
+    font-size: 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #f9fafb;
+  }
+
+  .attachment-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #6b7280;
+    cursor: pointer;
+  }
+
+  .send-btn {
+    background-color: #2E5AA6;
+    border: none;
+    color: white;
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .send-btn:hover {
+    background-color: #1C3A5A;
+  }
